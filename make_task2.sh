@@ -1,2 +1,2 @@
-javac -d target/ src/task2/*
-jar cvfm target/task2.jar Task2.MF -C target task2/
+javac -d target/ src/gpb_test/task2/* src/gpb_test/common/*
+jar cvfm task2.jar Task2.MF -C target gpb_test/task2/ -C target gpb_test/common/
