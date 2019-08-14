@@ -7,7 +7,9 @@ import java.util.Date;
 
 public final class Transaction {
 	private final static String SEPARATOR = ";";
-	private final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy" + SEPARATOR + "HH:mm:ss");
+	private final static SimpleDateFormat DAY_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+	private final static SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
+	private final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(DAY_FORMAT.toPattern() + SEPARATOR + TIME_FORMAT.toPattern());
 
 	private final Date date;
 
@@ -22,6 +24,14 @@ public final class Transaction {
 		this.merchant = merchant;
 		this.number = number;
 		this.amount = amount;
+	}
+
+	public String getDay() {
+		return DAY_FORMAT.format(date);
+	}
+
+	public String getTime() {
+		return TIME_FORMAT.format(date);
 	}
 
 	public Date getDate() {

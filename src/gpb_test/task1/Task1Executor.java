@@ -1,5 +1,7 @@
 package gpb_test.task1;
 
+import gpb_test.common.FileTruncateException;
+import gpb_test.common.FileTruncater;
 import gpb_test.common.Transaction;
 
 import java.io.FileWriter;
@@ -32,14 +34,8 @@ class Task1Executor {
 		random = new Random();
 	}
 
-	void generateAndSave(String filePath, Integer count, Integer initialNumber) throws GenerationException {
-		Path path = Paths.get(filePath);
-		try {
-			Files.deleteIfExists(path);
-			Files.createFile(path);
-		} catch (IOException cause) {
-			throw new GenerationException(String.format("Cannot access target file %s: cannot neither delete nor create it, perhaps insufficient permissions", filePath));
-		}
+	void generateAndSave(String filePath, Integer count, Integer initialNumber) throws GenerationException, FileTruncateException {
+		FileTruncater.truncate(filePath);
 		try (FileWriter writer = new FileWriter(filePath)) {
 			for (int i = 0; i < count; i ++) {
 				writer.write(new Transaction(randomDate(), randomMerchant(), initialNumber + i, randomAmount()).toString());

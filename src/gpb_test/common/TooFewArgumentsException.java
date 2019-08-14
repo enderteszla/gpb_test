@@ -1,7 +1,7 @@
-package gpb_test.task1;
+package gpb_test.common;
 
 public class TooFewArgumentsException extends Exception {
 	public TooFewArgumentsException(int validCount, int count) {
-		super(String.format("Program takes exactly %d arguments, got %d", validCount, count));
+		super(String.format("Program takes not less than %d arguments, got %d", validCount, count));
 	}
 }
